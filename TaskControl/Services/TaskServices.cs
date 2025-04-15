@@ -20,6 +20,7 @@ namespace TaskControl.Services
         {
             List<string> tasks = taskListContext.Tasks.Select(t=>t.Task1).ToList();
             return tasks;
+            
         }
 
         public void AddTask(string task, string priority, string category, DateOnly duedate)

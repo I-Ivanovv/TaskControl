@@ -9,6 +9,7 @@ namespace TaskControl
             InitializeComponent();
             taskServices = new TaskServices();
             LoadTask();
+            string test = "test";   
         }
         public void LoadTask()
         {
