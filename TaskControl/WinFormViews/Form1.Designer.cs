@@ -56,6 +56,7 @@
             label3 = new Label();
             button3 = new Button();
             tabPage3 = new TabPage();
+            button7 = new Button();
             button4 = new Button();
             label5 = new Label();
             label4 = new Label();
@@ -354,9 +355,11 @@
             button3.TabIndex = 0;
             button3.Text = "Search Task";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // tabPage3
             // 
+            tabPage3.Controls.Add(button7);
             tabPage3.Controls.Add(button4);
             tabPage3.Controls.Add(label5);
             tabPage3.Controls.Add(label4);
@@ -369,15 +372,27 @@
             tabPage3.Text = "Assign Task to Person";
             tabPage3.UseVisualStyleBackColor = true;
             // 
+            // button7
+            // 
+            button7.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            button7.Location = new Point(379, 219);
+            button7.Name = "button7";
+            button7.Size = new Size(177, 89);
+            button7.TabIndex = 5;
+            button7.Text = "Complete Task";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
             // button4
             // 
             button4.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            button4.Location = new Point(378, 156);
+            button4.Location = new Point(379, 81);
             button4.Name = "button4";
             button4.Size = new Size(177, 75);
             button4.TabIndex = 4;
             button4.Text = "Assign Task";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // label5
             // 
@@ -479,6 +494,7 @@
             button6.TabIndex = 1;
             button6.Text = "Remove Person";
             button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
             // 
             // button5
             // 
@@ -489,6 +505,7 @@
             button5.TabIndex = 0;
             button5.Text = "Remove Task";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // Form1
             // 
@@ -552,5 +569,6 @@
         private TextBox TBDueDate;
         private ComboBox CBCat;
         private ComboBox CBPrio;
+        private Button button7;
     }
 }
