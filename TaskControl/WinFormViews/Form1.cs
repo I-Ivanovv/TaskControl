@@ -17,12 +17,14 @@ namespace TaskControl
             listBox1.Items.Clear();
             listBox2.Items.Clear();
             listBox4.Items.Clear();
+            listBox6.Items.Clear();
             List<string> tasks = taskServices.GetTasks();
-            foreach (var task in tasks)
+            for (int i = 0; i < tasks.Count; i+=2)
             {
-                listBox1.Items.Add(task);
-                listBox2.Items.Add(task);
-                listBox4.Items.Add(task);
+                listBox1.Items.Add(tasks[i] + " - " + tasks[i+1]);
+                listBox2.Items.Add(tasks[i]);
+                listBox4.Items.Add(tasks[i]);
+                listBox6.Items.Add(tasks[i]);
             }
         }
         public void LoadPeople()
@@ -86,9 +88,9 @@ namespace TaskControl
                 MessageBox.Show("There are no such tasks!");
                 return;
             }
-            foreach (string task in taskList)
+            for (int i = 0; i < taskList.Count; i+=2)
             {
-                listBox1.Items.Add(task);
+                listBox1.Items.Add(taskList[i] + " - " + taskList[i + 1]);
             }
 
         }
@@ -158,6 +160,31 @@ namespace TaskControl
             taskServices.RemovePerson(personName);
             MessageBox.Show("The person has been successfully removed!");
             LoadPeople();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            listBox7.Items.Clear();
+            string taskName;
+            try
+            {
+                taskName = listBox6.SelectedItem.ToString();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("You have not seleced a Task!");
+                return;
+            }
+            List<string> names = taskServices.CheckAssigned(taskName);
+            if (names.Count == 0)
+            {
+                MessageBox.Show("This Task hasn't been assigned to anyone!");
+                return;
+            }
+            for (int i = 0; i < names.Count; i+=2)
+            {
+                listBox7.Items.Add(names[i] + " " + names[i + 1]);
+            }
         }
     }
 }

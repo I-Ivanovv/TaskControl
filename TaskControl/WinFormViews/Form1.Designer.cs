@@ -55,6 +55,12 @@
             listBox1 = new ListBox();
             label3 = new Label();
             button3 = new Button();
+            tabPage5 = new TabPage();
+            button8 = new Button();
+            label17 = new Label();
+            label16 = new Label();
+            listBox7 = new ListBox();
+            listBox6 = new ListBox();
             tabPage3 = new TabPage();
             button7 = new Button();
             button4 = new Button();
@@ -72,6 +78,7 @@
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
+            tabPage5.SuspendLayout();
             tabPage3.SuspendLayout();
             tabPage4.SuspendLayout();
             SuspendLayout();
@@ -80,6 +87,7 @@
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage5);
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
             tabControl1.Dock = DockStyle.Fill;
@@ -87,7 +95,7 @@
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(940, 410);
+            tabControl1.Size = new Size(959, 410);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -115,7 +123,7 @@
             tabPage1.Location = new Point(4, 37);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(932, 369);
+            tabPage1.Size = new Size(951, 369);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Create Tasks and People";
             tabPage1.UseVisualStyleBackColor = true;
@@ -314,7 +322,7 @@
             tabPage2.Location = new Point(4, 37);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(932, 369);
+            tabPage2.Size = new Size(951, 369);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Search Tasks";
             tabPage2.UseVisualStyleBackColor = true;
@@ -324,14 +332,14 @@
             TBKeyword.Location = new Point(206, 24);
             TBKeyword.Multiline = true;
             TBKeyword.Name = "TBKeyword";
-            TBKeyword.Size = new Size(234, 30);
+            TBKeyword.Size = new Size(249, 30);
             TBKeyword.TabIndex = 3;
             // 
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 28;
-            listBox1.Location = new Point(465, 17);
+            listBox1.Location = new Point(484, 17);
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(459, 340);
             listBox1.TabIndex = 2;
@@ -351,11 +359,75 @@
             button3.Font = new Font("Segoe UI", 20F);
             button3.Location = new Point(53, 148);
             button3.Name = "button3";
-            button3.Size = new Size(360, 129);
+            button3.Size = new Size(385, 129);
             button3.TabIndex = 0;
             button3.Text = "Search Task";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
+            // 
+            // tabPage5
+            // 
+            tabPage5.Controls.Add(button8);
+            tabPage5.Controls.Add(label17);
+            tabPage5.Controls.Add(label16);
+            tabPage5.Controls.Add(listBox7);
+            tabPage5.Controls.Add(listBox6);
+            tabPage5.Location = new Point(4, 37);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Padding = new Padding(3);
+            tabPage5.Size = new Size(951, 369);
+            tabPage5.TabIndex = 4;
+            tabPage5.Text = "Check Assigned Person";
+            tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            button8.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            button8.Location = new Point(399, 138);
+            button8.Name = "button8";
+            button8.Size = new Size(176, 119);
+            button8.TabIndex = 6;
+            button8.Text = "Check Assigned Person";
+            button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            label17.Location = new Point(93, 18);
+            label17.Name = "label17";
+            label17.Size = new Size(157, 37);
+            label17.TabIndex = 5;
+            label17.Text = "Select Task";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            label16.Location = new Point(668, 18);
+            label16.Name = "label16";
+            label16.Size = new Size(227, 37);
+            label16.TabIndex = 4;
+            label16.Text = "Assigned Person";
+            // 
+            // listBox7
+            // 
+            listBox7.FormattingEnabled = true;
+            listBox7.ItemHeight = 28;
+            listBox7.Location = new Point(605, 73);
+            listBox7.Name = "listBox7";
+            listBox7.Size = new Size(340, 284);
+            listBox7.TabIndex = 1;
+            // 
+            // listBox6
+            // 
+            listBox6.FormattingEnabled = true;
+            listBox6.ItemHeight = 28;
+            listBox6.Location = new Point(8, 73);
+            listBox6.Name = "listBox6";
+            listBox6.Size = new Size(355, 284);
+            listBox6.TabIndex = 0;
             // 
             // tabPage3
             // 
@@ -367,7 +439,7 @@
             tabPage3.Controls.Add(listBox2);
             tabPage3.Location = new Point(4, 37);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(932, 369);
+            tabPage3.Size = new Size(951, 369);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Assign Task to Person";
             tabPage3.UseVisualStyleBackColor = true;
@@ -375,7 +447,7 @@
             // button7
             // 
             button7.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            button7.Location = new Point(379, 219);
+            button7.Location = new Point(394, 221);
             button7.Name = "button7";
             button7.Size = new Size(177, 89);
             button7.TabIndex = 5;
@@ -386,7 +458,7 @@
             // button4
             // 
             button4.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            button4.Location = new Point(379, 81);
+            button4.Location = new Point(394, 81);
             button4.Name = "button4";
             button4.Size = new Size(177, 75);
             button4.TabIndex = 4;
@@ -398,7 +470,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            label5.Location = new Point(670, 14);
+            label5.Location = new Point(686, 14);
             label5.Name = "label5";
             label5.Size = new Size(188, 37);
             label5.TabIndex = 3;
@@ -418,7 +490,7 @@
             // 
             listBox3.FormattingEnabled = true;
             listBox3.ItemHeight = 28;
-            listBox3.Location = new Point(599, 65);
+            listBox3.Location = new Point(618, 65);
             listBox3.Name = "listBox3";
             listBox3.Size = new Size(325, 284);
             listBox3.TabIndex = 1;
@@ -442,7 +514,7 @@
             tabPage4.Controls.Add(button5);
             tabPage4.Location = new Point(4, 37);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(932, 369);
+            tabPage4.Size = new Size(951, 369);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Remove Task or Person";
             tabPage4.UseVisualStyleBackColor = true;
@@ -451,7 +523,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            label7.Location = new Point(663, 19);
+            label7.Location = new Point(685, 19);
             label7.Name = "label7";
             label7.Size = new Size(188, 37);
             label7.TabIndex = 5;
@@ -471,7 +543,7 @@
             // 
             listBox5.FormattingEnabled = true;
             listBox5.ItemHeight = 28;
-            listBox5.Location = new Point(581, 73);
+            listBox5.Location = new Point(600, 73);
             listBox5.Name = "listBox5";
             listBox5.Size = new Size(343, 200);
             listBox5.TabIndex = 3;
@@ -488,7 +560,7 @@
             // button6
             // 
             button6.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            button6.Location = new Point(581, 319);
+            button6.Location = new Point(600, 319);
             button6.Name = "button6";
             button6.Size = new Size(343, 49);
             button6.TabIndex = 1;
@@ -511,7 +583,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(940, 410);
+            ClientSize = new Size(959, 410);
             Controls.Add(tabControl1);
             Name = "Form1";
             Text = "Form1";
@@ -520,6 +592,8 @@
             tabPage1.PerformLayout();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
+            tabPage5.ResumeLayout(false);
+            tabPage5.PerformLayout();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             tabPage4.ResumeLayout(false);
@@ -570,5 +644,11 @@
         private ComboBox CBCat;
         private ComboBox CBPrio;
         private Button button7;
+        private TabPage tabPage5;
+        private Button button8;
+        private Label label17;
+        private Label label16;
+        private ListBox listBox7;
+        private ListBox listBox6;
     }
 }

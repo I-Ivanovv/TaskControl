@@ -18,8 +18,25 @@ namespace TaskControl.Services
         
         public List<string> GetTasks()
         {
-            List<string> tasks = taskListContext.Tasks.Select(t=>t.Task1).ToList();
-            return tasks;
+            List<Models.Task> tasks = taskListContext.Tasks.ToList();
+            List<string> taskAndS = new List<string>();
+            foreach (var task in tasks)
+            {
+                taskAndS.Add(task.Task1);
+                if (task.StatusId == 1)
+                {
+                    taskAndS.Add("Pending");
+                }
+                else if (task.StatusId == 2)
+                {
+                    taskAndS.Add("In Progress");
+                }
+                else
+                {
+                    taskAndS.Add("Completed");
+                }
+            }
+            return taskAndS;
             
         }
         public List<string> GetFirstName()
@@ -70,8 +87,25 @@ namespace TaskControl.Services
 
         public List<string> SearchTask(string keyword)
         {
-            List<string> taskList = taskListContext.Tasks.Where(t=>t.Task1.Contains(keyword)).Select(t=>t.Task1).ToList();
-            return taskList;
+            List<Models.Task> taskList = taskListContext.Tasks.Where(t=>t.Task1.Contains(keyword)).ToList();
+            List<string> tasks = new List<string>();
+            foreach (var task in taskList)
+            {
+                tasks.Add(task.Task1);
+                if (task.StatusId == 1)
+                {
+                    tasks.Add("Pending");
+                }
+                else if (task.StatusId == 2)
+                {
+                    tasks.Add("In Progress");
+                }
+                else
+                {
+                    tasks.Add("Completed");
+                }
+            }
+            return tasks;
         }
 
         public void AssignTask(string taskName,string name)
@@ -101,14 +135,19 @@ namespace TaskControl.Services
         {
             Models.Task task = taskListContext.Tasks.Where(t => t.Task1 == taskName).FirstOrDefault();
             task.StatusId = 3;
+            List<TaskPerson> tp = taskListContext.TaskPeople.Where(taskp => taskp.TaskId == task.TaskId).ToList();
+            foreach (var item in tp)
+            {
+                taskListContext.Remove(item);
+            }
             taskListContext.SaveChanges();
         }
         public void RemoveTask(string taskName)
         {
             Models.Task task = taskListContext.Tasks.Where(t => t.Task1 == taskName).FirstOrDefault();
-            taskListContext.Tasks.Remove(task);
             TaskCategory tc = taskListContext.TaskCategories.Where(t => t.TaskId == task.TaskId).FirstOrDefault();
             taskListContext.TaskCategories.Remove(tc);
+            taskListContext.Tasks.Remove(task);
             List<TaskPerson> tpList = taskListContext.TaskPeople.Where(t => t.TaskId == task.TaskId).ToList();
             foreach (var tp in tpList)
             {
@@ -129,6 +168,24 @@ namespace TaskControl.Services
                 taskListContext.Remove(tp);
             }
             taskListContext.SaveChanges();
+        }
+        
+        public List<string> CheckAssigned(string task)
+        {
+            Models.Task ta = taskListContext.Tasks.Where(t => t.Task1 == task).FirstOrDefault();
+            List<TaskPerson> tpList = taskListContext.TaskPeople.Where(tp => tp.TaskId == ta.TaskId).ToList();
+            List<Person> people = new List<Person>();
+            foreach (var tp in tpList)
+            {
+                people.Add(taskListContext.People.Where(p => p.PersonId == tp.PersonId).FirstOrDefault());
+            }
+            List<string> names = new List<string>();
+            foreach (var p in people)
+            {
+                names.Add(taskListContext.People.Where(pe => pe.PersonId == p.PersonId).Select(p => p.FirstName).FirstOrDefault());
+                names.Add(taskListContext.People.Where(pe => pe.PersonId == p.PersonId).Select(pe => pe.LastName).FirstOrDefault());
+            }
+            return names;
         }
     }
 }
