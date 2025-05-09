@@ -19,9 +19,9 @@ namespace TaskControl
             listBox4.Items.Clear();
             listBox6.Items.Clear();
             List<string> tasks = taskServices.GetTasks();
-            for (int i = 0; i < tasks.Count; i+=2)
+            for (int i = 0; i < tasks.Count; i += 2)
             {
-                listBox1.Items.Add(tasks[i] + " - " + tasks[i+1]);
+                listBox1.Items.Add(tasks[i] + " - " + tasks[i + 1]);
                 listBox2.Items.Add(tasks[i]);
                 listBox4.Items.Add(tasks[i]);
                 listBox6.Items.Add(tasks[i]);
@@ -44,6 +44,11 @@ namespace TaskControl
             string task = TBTask.Text;
             string priority = CBPrio.Text;
             string category = CBCat.Text;
+            if (task == "" || priority == "" || category == "")
+            {
+                MessageBox.Show("Please fill all the information!");
+                return;
+            }
             DateOnly duedate;
             try
             {
@@ -70,9 +75,31 @@ namespace TaskControl
         private void button2_Click(object sender, EventArgs e)
         {
             string firstName = TBFirstName.Text;
-            string lastName = TBLastName.Text;
-            int age = int.Parse(TBAge.Text);
+            string lastName = TBLastName.Text;     
             string phone = TBPhone.Text;
+            if (firstName == "" || lastName == "" || phone == "")
+            {
+                MessageBox.Show("Please fill all the information!");
+                return;
+            }
+
+            int age;
+            try
+            {
+                age = int.Parse(TBAge.Text);
+                if (age < 0)
+                {
+                    MessageBox.Show("The age entered is not valid!");
+                    return;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("The age entered is not valid!");
+                return;
+            }
+
+
             taskServices.AddPerson(firstName, lastName, age, phone);
             MessageBox.Show("The Person has been added successfully!");
             LoadPeople();
