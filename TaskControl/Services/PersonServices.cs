@@ -7,7 +7,7 @@ using TaskControl.Models;
 
 namespace TaskControl.Services
 {
-    class PersonServices
+    public class PersonServices
     {
         TaskListContext taskListContext;
 
