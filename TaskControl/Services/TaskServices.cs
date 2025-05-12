@@ -15,7 +15,7 @@ namespace TaskControl.Services
         {
             taskListContext = new TaskListContext();
         }
-        
+
         public List<string> GetTasks()
         {
             List<Models.Task> tasks = taskListContext.Tasks.ToList();
@@ -37,17 +37,7 @@ namespace TaskControl.Services
                 }
             }
             return taskAndS;
-            
-        }
-        public List<string> GetFirstName()
-        {
-            List<string> firstNames = taskListContext.People.Select(t=>t.FirstName).ToList();
-            return firstNames;
-        }
-        public List<string> GetLastName()
-        {
-            List<string> lastNames = taskListContext.People.Select(t=>t.LastName).ToList();
-            return lastNames;
+
         }
 
         public void AddTask(string task, string priority, string category, DateOnly duedate)
@@ -69,25 +59,12 @@ namespace TaskControl.Services
                 CategoryId = taskListContext.Categories.Where(c => c.CategoryName == category).Select(c => c.CategoryId).FirstOrDefault(),
             };
             taskListContext.TaskCategories.Add(tc);
-            taskListContext.SaveChanges();      
-        }
-
-        public void AddPerson(string firstName, string lastName,int age,string phone)
-        {
-            Person person = new Person()
-            {
-                FirstName = firstName,
-                LastName = lastName,
-                Age = age,
-                PhoneNumber = phone
-            };
-            taskListContext.People.Add(person);
             taskListContext.SaveChanges();
         }
 
         public List<string> SearchTask(string keyword)
         {
-            List<Models.Task> taskList = taskListContext.Tasks.Where(t=>t.Task1.Contains(keyword)).ToList();
+            List<Models.Task> taskList = taskListContext.Tasks.Where(t => t.Task1.Contains(keyword)).ToList();
             List<string> tasks = new List<string>();
             foreach (var task in taskList)
             {
@@ -108,12 +85,12 @@ namespace TaskControl.Services
             return tasks;
         }
 
-        public void AssignTask(string taskName,string name)
+        public void AssignTask(string taskName, string name)
         {
             List<string> FirstAndLastName = name.Split(' ').ToList();
             Models.Task task = taskListContext.Tasks.Where(t => t.Task1 == taskName).FirstOrDefault();
             int tId = task.TaskId;
-            int pId = taskListContext.People.Where(p => p.FirstName == FirstAndLastName[0] && p.LastName == FirstAndLastName[1]).Select(p=>p.PersonId).FirstOrDefault();
+            int pId = taskListContext.People.Where(p => p.FirstName == FirstAndLastName[0] && p.LastName == FirstAndLastName[1]).Select(p => p.PersonId).FirstOrDefault();
             TaskPerson tp = new TaskPerson()
             {
                 TaskId = tId,
@@ -157,19 +134,6 @@ namespace TaskControl.Services
 
         }
 
-        public void RemovePerson(string personName)
-        {
-            List<string> FirstAndLastName = personName.Split(' ').ToList();
-            Person per = taskListContext.People.Where(p => p.FirstName == FirstAndLastName[0] && p.LastName == FirstAndLastName[1]).FirstOrDefault();
-            taskListContext.People.Remove(per);
-            List<TaskPerson> tpList = taskListContext.TaskPeople.Where(t => t.PersonId == per.PersonId).ToList();
-            foreach (var tp in tpList)
-            {
-                taskListContext.Remove(tp);
-            }
-            taskListContext.SaveChanges();
-        }
-        
         public List<string> CheckAssigned(string task)
         {
             Models.Task ta = taskListContext.Tasks.Where(t => t.Task1 == task).FirstOrDefault();

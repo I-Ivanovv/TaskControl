@@ -5,10 +5,12 @@ namespace TaskControl
     public partial class Form1 : Form
     {
         TaskServices taskServices;
+        PersonServices personServices;
         public Form1()
         {
             InitializeComponent();
             taskServices = new TaskServices();
+            personServices = new PersonServices();
             LoadTask();
             LoadPeople();
         }
@@ -31,8 +33,8 @@ namespace TaskControl
         {
             listBox3.Items.Clear();
             listBox5.Items.Clear();
-            List<string> firstNames = taskServices.GetFirstName();
-            List<string> lastNames = taskServices.GetLastName();
+            List<string> firstNames = personServices.GetFirstName();
+            List<string> lastNames = personServices.GetLastName();
             for (int i = 0; i < firstNames.Count; i++)
             {
                 listBox3.Items.Add(firstNames[i] + " " + lastNames[i]);
@@ -100,7 +102,7 @@ namespace TaskControl
             }
 
 
-            taskServices.AddPerson(firstName, lastName, age, phone);
+            personServices.AddPerson(firstName, lastName, age, phone);
             MessageBox.Show("The Person has been added successfully!");
             LoadPeople();
         }
@@ -184,7 +186,7 @@ namespace TaskControl
                 MessageBox.Show("You have not seleced a Person!");
                 return;
             }
-            taskServices.RemovePerson(personName);
+            personServices.RemovePerson(personName);
             MessageBox.Show("The person has been successfully removed!");
             LoadPeople();
         }
