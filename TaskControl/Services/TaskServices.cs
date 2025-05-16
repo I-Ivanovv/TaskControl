@@ -85,7 +85,7 @@ namespace TaskControl.Services
             return tasks;
         }
 
-        public void AssignTask(string taskName, string name)
+        public void AssignTask(string taskName, string name, int type)
         {
             List<string> FirstAndLastName = name.Split(' ').ToList();
             Models.Task task = taskListContext.Tasks.Where(t => t.Task1 == taskName).FirstOrDefault();
@@ -100,13 +100,27 @@ namespace TaskControl.Services
             TaskPerson checkTP = taskListContext.TaskPeople.Where(t => t.TaskId == tId && t.PersonId == pId).FirstOrDefault();
             if (checkTP != null)
             {
-                MessageBox.Show("The task has already been assigned to this Person!");
+                if (type == 0)
+                {
+                    MessageBox.Show("The task has already been assigned to this Person!");
+                }
+                else
+                {
+                    Console.WriteLine("- The task has already been assigned to this Person! -");
+                }
                 return;
             }
             taskListContext.TaskPeople.Add(tp);
             task.StatusId = 2;
             taskListContext.SaveChanges();
-            MessageBox.Show("The task has been successfully assigned!");
+            if (type == 0)
+            {
+                MessageBox.Show("The task has been successfully assigned!");
+            }
+            else
+            {
+                Console.WriteLine("- The Task has been successfully assigned! -");
+            }
         }
         public void CompleteTask(string taskName)
         {
@@ -151,5 +165,7 @@ namespace TaskControl.Services
             }
             return names;
         }
+
+
     }
 }

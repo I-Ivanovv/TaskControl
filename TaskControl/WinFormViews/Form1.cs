@@ -137,7 +137,7 @@ namespace TaskControl
                 MessageBox.Show("You have not seleced a Task or a Person!");
                 return;
             }
-            taskServices.AssignTask(taskName, name);
+            taskServices.AssignTask(taskName, name,0);
         }
 
         private void button7_Click(object sender, EventArgs e)
