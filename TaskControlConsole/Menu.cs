@@ -268,7 +268,7 @@ namespace TaskControlConsole
             }
 
             personServices.AddPerson(firstName, lastName,age,number);
-            Console.WriteLine("- You have successfully created the Task! -");
+            Console.WriteLine("- You have successfully added the Person! -");
             Console.Write("- Press Enter to go back! -");
             Console.ReadLine();
         }
